@@ -1,4 +1,4 @@
-const getPeople = require('./scripts');
+const {getPeople, isCity} = require('./scripts');
 const fetch = require('node-fetch');
 
 // Async API: Use expect.assertions(#) to tell Jest how many assertions to expect to receive inside of the actual test
@@ -54,4 +54,20 @@ test('test getPeople with dependency injection', () => {
             expect(mockFetch).toHaveBeenCalledWith('https://swapi.dev/api/people')
             expect(data.count).toEqual(87)
         })
+})
+
+// Setup / Teardown Code:
+let db = [];
+const initDb = () => db = ['Vienna', 'London', 'San Juan', 'Zurich'];
+const closeDb = () => db = [];
+
+// beforeEach() and afterEach() are Jest functions that execute their code before / after each test
+// beforeAll() and afterAll() are Jest functions that execute their code before all tests, and after all tests
+beforeEach(() => initDb())
+afterEach(() => closeDb())
+beforeAll(() => initDb())
+afterAll(() => closeDb())
+
+test('city db has Vienna', () => {
+    expect(isCity('Vienna', db)).toBeTruthy()
 })
