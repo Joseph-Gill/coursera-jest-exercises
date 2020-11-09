@@ -69,3 +69,16 @@ test('there is no I in team', () => {
     expect('team').not.toMatch(/I/)
 })
 
+//Arrays and Iterables: Use toContain to test for contents of an array
+test('the shopping list has beer in it', () => {
+    const shoppingList = ['diapers', 'toilet paper', 'garbage bags', 'beer'];
+    expect(shoppingList).toContain('beer')
+    expect(new Set(shoppingList)).toContain('beer')
+})
+
+//Errors: use toThrow() to test that an error is thrown, also test what message is thrown with Regex
+test('compiling android goes as expected', () => {
+    expect(functions.compileAndroidCode).toThrow()
+    expect(functions.compileAndroidCode).toThrow(/JDK/)
+})
+

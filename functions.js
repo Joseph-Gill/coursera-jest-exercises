@@ -8,6 +8,10 @@ const functions = {
     isNull: () => null,
 
     isUndefined: () => undefined,
+
+    compileAndroidCode: () => {
+        throw new Error('you are using the wrong JDK!')
+    }
 }
 
 module.exports = functions
