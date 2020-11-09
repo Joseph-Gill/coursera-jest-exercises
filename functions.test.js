@@ -45,8 +45,27 @@ test('zero is not null, defined, not truthy, and falsy', () => {
     expect(z).toBeFalsy()
 })
 
-//
-test('two plus two', () => {
+// Use toBeGreaterThan(orEqual)() / toBeLessThan(orEqual)() to test comparison
+// Numbers: Use toBe() to test since they are primitive or test with toEqual()
+test('two plus two is greater than 3, greater than or equal to 3.5, to be less than 5, to be less than or equal ' +
+    '4.5, to be 4, and to equal 4', () => {
+    const value = 2 + 2;
+    expect(value).toBeGreaterThan(3)
+    expect(value).toBeGreaterThanOrEqual(3.5)
+    expect(value).toBeLessThan(5)
+    expect(value).toBeLessThanOrEqual(4.5)
+    expect(value).toBe(4)
+    expect(value).toEqual(4)
+})
 
+//Floating Point Numbers: Use toBeCloseTo() to test floating point numbers
+test('0.1 plus 0.2 is close to 0.3', () => {
+    const value = 0.1 + 0.2;
+    expect(value).toBeCloseTo(0.3)
+})
+
+// Strings: Use toMatch() to test for Regex patterns
+test('there is no I in team', () => {
+    expect('team').not.toMatch(/I/)
 })
 
